@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML 5 Web Storage</title>
+
+    <link href="reset.css" type="text/css" rel="stylesheet" />
+
+    <link href="webStorage_Style.css" type="text/css" rel="stylesheet" />
+
+    <script>
+        window.addEventListener("load", init);
+
+        function init() {
+            if (typeof(Storage) !== "undefined") {
+
+                display();
+
+                var button = document.getElementById("button");
+                button.addEventListener("click", saveInfo);
+            } else {
+                //old bowser	
+            }
+        }
+
+        function saveInfo() {
+            var name = document.getElementById("name").value;
+
+            var glaze = document.getElementsByName("glazing").value;
+
+            localStorage.setItem("orderName", name);
+            localStorage.setItem("glazeType", glaze);
+
+
+            display();
+
+        }
+
+        function display() {
+            var rightBox = document.getElementById("useroutput");
+            var theName = localStorage.getItem("orderName");
+            var theGlaze = localStorage.getItem("glazeType");
+
+            if (name == undefined) {
+                document.getElementById("useroutput").innerHTML = "";
+            } else {
+                document.getElementById("useroutput").innerHTML = "OUTPUT  <hr /><br /><br />Order name " + theName + "<br /><br />  Glaze: " + theGlaze;
+            }
+
+        }
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <div id="main">
+        <img id="dognut" src="dognut.png" alt="dougnut">
+        <section id="userinput">
+            INPUT <br>
+            <hr />
+            <br /><br />
+            <form>
+
+                <div>Order name: <br /><input type="input" id="name" size="20"></div>
+                <br />
+                <div>Donut type:<br>
+
+                    <input type="radio" name="glazing" value="chocolate" checked> Chocolate
+                    <br>
+                    <input type="radio" name="glazing" value="glazed"> Glazed
+                    <br>
+                    <input type="radio" name="glazing" value="creme"> Creme Filled
+                    <br>
+                    <div><input type="button" id="button" value="Save"></div>
+
+            </form>
+        </section>
+
+
+        <section id="useroutput">
+            OUTPUT
+            <hr />
+            <br /><br />
+        </section>
+
+        </div>
+
+
+
+</body>
+
+</html>
